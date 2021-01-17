@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({
     extended:true
 }))
 app.use(express.static('public/html'))
+//app.use(express.static('public/images'))
+//app.use(express.static('public/css'))
 app.use('/css', express.static(path.resolve(__dirname, "public/assets/css")))
 app.use('/img', express.static(path.resolve(__dirname, "public/assets/images")))
 app.use('/js', express.static(path.resolve(__dirname, "public/assets/js")))

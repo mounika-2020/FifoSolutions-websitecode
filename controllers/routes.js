@@ -103,6 +103,7 @@ routes.get('/login', (req, res) => {
 });
 
 routes.post('/login', (req, res, next) => {
+    debugger
     passport.authenticate('local', {
         failureRedirect: '/login',
         successRedirect: '/success',
