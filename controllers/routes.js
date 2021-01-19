@@ -40,7 +40,7 @@ const checkAuthenticated = function (req, res, next) {
         res.redirect('/login');
     }
 }
-
+//*
 // Connecting To Database
 mongoose.connect('mongodb://mouni1997:mounika75@fifocluster-shard-00-00.dx5lk.mongodb.net:27017,fifocluster-shard-00-01.dx5lk.mongodb.net:27017,fifocluster-shard-00-02.dx5lk.mongodb.net:27017/Fifodb?ssl=true&replicaSet=atlas-h4enxu-shard-0&authSource=admin&retryWrites=true&w=majority' ,{
     useNewUrlParser: true, useUnifiedTopology: true,

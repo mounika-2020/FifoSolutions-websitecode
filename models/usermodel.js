@@ -33,5 +33,5 @@ const userschema = new mongoose.Schema({
         type : Boolean
     }
 });
-
+//
 module.exports = new mongoose.model('user', userschema);

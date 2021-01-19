@@ -23,7 +23,6 @@ routes1.use(session({
 }));
 routes1.use(passport.initialize());
 routes1.use(passport.session());
-// using flash for flash messages
 routes1.use(flash());
 
 routes1.use(function (req, res, next) {
