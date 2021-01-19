@@ -1,11 +1,11 @@
-var localStrategy = require('passport-local').Strategy;
+const passport=require("passport");
+const localStrategy = require('passport-local').Strategy;
 const user = require('../models/usermodel');
 const benchsales = require('../models/usermodel1');
 const bcrypt = require('bcryptjs');
 module.exports = function (passport) {
-    passport.use(new localStrategy({ usernameField: 'email' }, (email, password,type, done) => {
-      if(type=='vendor'){
-        user.findOne({ email: email }, (err, data) => {
+    passport.use('vendor',new localStrategy({ usernameField: 'email' }, (email, password, done) => {
+      user.findOne({ email: email }, (err, data) => {
             if (err) throw err;
             if (!data) {
                 return done(null, false, { message: "User Doesn't Exists.." });
@@ -22,24 +22,24 @@ module.exports = function (passport) {
                 }
             });
           });
-          }else if(type=='benchsales'){
-            benchsales.findOne({ email: email }, (err, data) => {
-                if (err) throw err;
-                if (!data) {
-                    return done(null, false, { message: "User Doesn't Exists.." });
-                }
-                bcrypt.compare(password, data.password, (err, match) => {
-                    if (err) {
-                        return done(null, false);
-                    }
-                    if (!match) {
-                        return done(null, false, { message: "Password Doesn't Match" });
-                    }
-                    if (match) {
-                        return done(null, data);
-                    }
+          passport.use('benchsales',new localStrategy({ usernameField: 'email' }, (email, password, done) => {
+            user.findOne({ email: email }, (err, data) => {
+                  if (err) throw err;
+                  if (!data) {
+                      return done(null, false, { message: "User Doesn't Exists.." });
+                  }
+                  bcrypt.compare(password, data.password, (err, match) => {
+                      if (err) {
+                          return done(null, false);
+                      }
+                      if (!match) {
+                          return done(null, false, { message: "Password Doesn't Match" });
+                      }
+                      if (match) {
+                          return done(null, data);
+                      }
+                  });
                 });
-          });
         }
     }));
 
@@ -85,8 +85,8 @@ module.exports = function (passport) {
             cb(err, benchsales);
         });
     });
-}*/
-
+}
+*/
 
 
 

@@ -1,10 +1,11 @@
 const express=require('express');
 var bodyParser = require("body-parser")
+const passport = require("passport");
 const routes = require('./controllers/routes');
-const routes1=require('./controllers/routes1');
+//const routes1=require('./controllers/routes1');
 var mongoose = require("mongoose")
 const path = require('path');
-
+require("./controllers/passport")(passport);
 const foreach=require('foreach');
 const app = express();
 app.set('view engine', 'ejs');
@@ -27,18 +28,18 @@ app.get('/',(req,res) =>{
 })
 app.get('/vendor', routes);
 app.post('/vendor', routes);
-app.get('/benchsales',routes1);
-app.post('/benchsales', routes1);
+//app.get('/benchsales',routes1);
+//app.post('/benchsales', routes1);
 
 app.get('/login', routes);
 app.post('/login', routes);
 app.get('/success', routes);
 app.get('/logout', routes);
 
-app.get('/login', routes1);
-app.post('/login', routes1);
-app.get('/success', routes1);
-app.get('/logout', routes1);
+//app.get('/login', routes1);
+//app.post('/login', routes1);
+//app.get('/success', routes1);
+//app.get('/logout', routes1);
 app.listen(8000,function(){
   console.log("__dirname: ");
   console.log(path.join(__dirname, 'views'));
